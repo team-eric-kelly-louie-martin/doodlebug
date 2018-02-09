@@ -1,7 +1,27 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "simulation.hpp"
-#include "critter.hpp"
+using std::cout;
+using std::endl;
 
 int main()
 {
-    return 0;
+	//seed generation	
+	int seed = time(0);
+	srand(seed);
+
+	//welcome user
+	cout << endl << "		Welcome to the predator-prey simulation!" 
+	     << endl;
+
+	//create game object
+	Simulation game;
+
+	//run the game
+	game.run();
+
+	//exit
+	cout << "Goodbye" << endl;
+	return 0;
 }
