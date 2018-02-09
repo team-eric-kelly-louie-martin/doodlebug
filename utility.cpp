@@ -74,7 +74,7 @@ int getInt(int min, int max, string prompt)
         }
 
         // check all characters and if any aren't digits, set isAllDigits false
-        for (int i = 1; i < userInput.length(); i++)
+        for (unsigned int i = 1; i < userInput.length(); i++)
         {
             if (!isdigit(userInput[i]))
             {
