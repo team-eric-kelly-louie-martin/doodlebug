@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 #include "simulation.hpp"
 #include "critter.hpp"
 #include "utility.hpp"
@@ -158,7 +159,6 @@ void Simulation::initialize()
 	}
 */
 }
-
 		
 void Simulation::displayBoard()
 {
@@ -177,7 +177,7 @@ void Simulation::displayBoard()
 				cout << " ";
 			}
 			//print ant symbol for ants
-			else if(true)
+/*			else if(typeid(board[row][col]) == typeid(Ant))
 			{
 				cout << "O";
 			}
@@ -187,7 +187,7 @@ void Simulation::displayBoard()
 				cout << "X";
 			}
 		}
-		
+*/		
 		//carriage return at the end of each row
 		cout << '|' << endl;
 	}
