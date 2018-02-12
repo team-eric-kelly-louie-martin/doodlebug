@@ -5,24 +5,18 @@
 class Critter 
 {
 	protected:
-		int rowPos,
-		    colPos,
-		    age;
+		int age;
 
 	public:
 		//constructors & destructors
-		Critter(int rowPos, int colPos, int age = 0);
-		virtual ~Critter() {} ;	
+		Critter();
+		virtual ~Critter();
 	
 		//getters
 		int getAge();
-		int getRow();
-		int getCol();
 
 		//misc.	
-		virtual void move() = 0;
-		void ageUp();
-
+		void incrementAge();
 };
 
 class Doodlebug : public Critter
@@ -32,27 +26,23 @@ class Doodlebug : public Critter
 
 	public:
 		//constructors & destructors
-		Doodlebug(int row, int col, int lastMeal = 0);
-		~Doodlebug() {};
+		Doodlebug();
+		virtual ~Doodlebug();
 		
 		//getters
 		int getLastMeal();
 
 		//misc.
-		void move();
+        void incrementLastMeal();
+        void resetLastMeal();
 };
 
 class Ant : public Critter
 {
-	private:
-
 	public:
 		//constructors & destructors
-		Ant(int row, int col);
-		~Ant() {};
-
-		//misc.
-		void move();
+		Ant();
+		virtual ~Ant();
 };
 
 #endif
