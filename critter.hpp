@@ -12,7 +12,7 @@ class Critter
 	public:
 		//constructors & destructors
 		Critter(int rowPos, int colPos, int age = 0);
-		~Critter();	
+		virtual ~Critter() {} ;	
 	
 		//getters
 		int getAge();
@@ -32,7 +32,7 @@ class Doodlebug : public Critter
 
 	public:
 		//constructors & destructors
-		Doodlebug(int rowPos, int colPos, int lastMeal = 0);
+		Doodlebug(int row, int col, int lastMeal = 0);
 		~Doodlebug() {};
 		
 		//getters
@@ -48,7 +48,7 @@ class Ant : public Critter
 
 	public:
 		//constructors & destructors
-		Ant(int rowPos, int colPos);
+		Ant(int row, int col);
 		~Ant() {};
 
 		//misc.

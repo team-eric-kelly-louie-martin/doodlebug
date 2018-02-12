@@ -13,7 +13,7 @@ int main()
 
 	//welcome user
 	cout << endl << "		Welcome to the predator-prey simulation!" 
-	     << endl;
+	     << endl << endl;
 
 	//create game object
 	Simulation game;

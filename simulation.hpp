@@ -9,7 +9,7 @@ using std::vector;
 class Simulation 
 {
 	private:
-		char** board;
+		Critter*** board;
 		int maxSteps;
 		int maxRows;
 		int maxColumns;
@@ -21,6 +21,7 @@ class Simulation
 		
 		//misc.
 		void run();
+		void initialize();
 		void breedEveryone();
 		void Starve();
 		void newCritter(int row, int col);
