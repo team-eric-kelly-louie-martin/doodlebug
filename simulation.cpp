@@ -363,7 +363,6 @@ bool Simulation::validMove(int row, int col) {
 void Simulation::addCritter(int row, int col)
 {
     board[row][col] = new Critter;
-    cout << board[row][col] << endl;
 }
 
 void Simulation::removeCritter(int row, int col)
