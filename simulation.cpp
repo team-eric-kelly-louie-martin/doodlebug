@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include <vector>
-#include <typeinfo>
 #include "simulation.hpp"
 #include "critter.hpp"
 #include "utility.hpp"
@@ -159,7 +158,7 @@ void Simulation::initialize()
 	}
 */
 }
-		
+
 void Simulation::displayBoard()
 {
 	//print line to delineate start of grid
@@ -193,7 +192,7 @@ void Simulation::displayBoard()
 	//print line to delineate end of grid
 	cout << string (2*maxColumns, '-') << endl << endl;
 }
-
+/*
 void Simulation::moveDoodle() {
 	bool valid = false;
 
@@ -358,4 +357,71 @@ bool Simulation::validMove(int row, int col) {
 		return true;
 	}
 } 
+*/
 
+void Simulation::addCritter(int row, int col)
+{
+    board[row][col] = new Critter;
+}
+
+void Simulation::removeCritter(int row, int col)
+{
+    delete board[row][col];
+    board[row][col] = NULL;
+}
+
+
+
+
+
+/*****************************************************************************
+** Description:	Breed function checks the age of existing objects on board.
+* If old enough to breed, breeding is attempted. 
+** parameters: none
+** return: none
+*****************************************************************************/
+void Simulation::breedEveryone()
+{
+	//iterate through board
+	for (int row = 0; row < maxRows; row++) {
+		for (int column = 0; column < maxColumns; column++) {
+			//ERRORS       if (typeid(board[row][column]) == typeid(Ant)) {
+				//then check age
+				if(board[row][column]->getAge() % 3) {
+					//attempt to breed. need to check for success
+				}
+			//}
+			
+			//ERRORS   else if (typeid(board[row][column]) == typeid(Doodlebug)) {
+				//then check age
+				if(board[row][column]->getAge() % 8) {
+					//attempt to breed. need to check for success
+				}
+			//}
+		}
+	}
+	
+}
+
+
+/*****************************************************************************
+** Description:	starve function checks the last time fed on doodlebugs on the 
+* board. If == 3, doodlebug killed and removed from board
+** parameters: none
+** return: none
+*****************************************************************************/
+void Simulation::starve() {
+	//iterate through board
+	for (int row = 0; row < maxRows; row++) {
+		for (int column = 0; column < maxColumns; column++) {
+			//ERRORS  if (typeid(board[row][column]) == typeid(Doodlebug)) {
+				//check for last meal and delete
+				//if ((board[row][column]::Doodlebug)->getLastMeal() == 3) {
+					//kill doodlebug
+					//removeCritter(row, column);
+				//}
+			//}
+		}
+	}
+		
+}

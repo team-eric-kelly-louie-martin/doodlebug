@@ -23,8 +23,8 @@ class Simulation
 		void run();
 		void initialize();
 		void breedEveryone();
-		void Starve();
-		void newCritter(int row, int col);
+		void starve();
+		void addCritter(int row, int col);
 		void removeCritter(int row, int col);
 		void displayBoard();
         void moveDoodle();
