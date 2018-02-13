@@ -370,3 +370,49 @@ void Simulation::removeCritter(int row, int col)
     delete board[row][col];
     board[row][col] = NULL;
 }
+
+
+
+
+
+/*****************************************************************************
+** Description:	Breed function checks the age of existing objects on board.
+* If old enough to breed, breeding is attempted. 
+** parameters: none
+** return: none
+*****************************************************************************/
+void Simulation::breedEveryone()
+{
+	//iterate through board
+	for (int row = 0; row < maxRows; row++) {
+		for (int column = 0; column < maxColumns; column++) {
+			//if location == ant and ant age % 3
+			//attempt to add ant with addCritter()
+					//NEED to update add critter to bool to check for success?
+			//if location == doodle and doodle age % 8
+			//attempt to add doodle
+					//again, need bool response for success		
+		}
+	}
+	
+}
+
+
+/*****************************************************************************
+** Description:	starve function checks the last time fed on doodlebugs on the 
+* board. If == 3, doodlebug killed and removed from board
+** parameters: none
+** return: none
+*****************************************************************************/
+void Simulation::starve() {
+	//iterate through board
+	for (int row = 0; row < maxRows; row++) {
+		for (int column = 0; column < maxColumns; column++) {
+			/*if location == doodle and doodle last food == 3 {
+				removeCritter(row, column);
+			}*/
+		}
+		
+	}
+	
+}

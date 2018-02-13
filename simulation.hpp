@@ -23,7 +23,7 @@ class Simulation
 		void run();
 		void initialize();
 		void breedEveryone();
-		void Starve();
+		void starve();
 		void addCritter(int row, int col);
 		void removeCritter(int row, int col);
 		void displayBoard();
