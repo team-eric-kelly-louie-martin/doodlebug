@@ -14,8 +14,11 @@ class Critter
 	
 		//getters
 		int getAge();
+        virtual int getLastMeal() = 0;
 
 		//misc.	
+        virtual void incrementLastMeal() = 0;
+        virtual void resetLastMeal() = 0;
 		void incrementAge();
 };
 
@@ -30,11 +33,11 @@ class Doodlebug : public Critter
 		virtual ~Doodlebug();
 		
 		//getters
-		int getLastMeal();
+		virtual int getLastMeal();
 
 		//misc.
-        void incrementLastMeal();
-        void resetLastMeal();
+        virtual void incrementLastMeal();
+        virtual void resetLastMeal();
 };
 
 class Ant : public Critter

@@ -27,9 +27,10 @@ class Simulation
 		void newCritter(int row, int col);
 		void removeCritter(int row, int col);
 		void displayBoard();
-        void moveDoodle();
-        void moveAnt();
+        void move();
         bool validMove(int row, int col);
+        void makeMoveD(int row, int column, int i, int j, bool eat);
+        void makeMoveA(int row, int column, int i, int j);
 };
 
 #endif
