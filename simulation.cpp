@@ -386,14 +386,14 @@ void Simulation::breedEveryone()
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			if (typeid(board[row][column] == typeid(Ant))) {
+			if (typeid(board[row][column]) == typeid(Ant)) {
 				//then check age
 				if(board[row][column]->getAge() % 3) {
 					//attempt to breed. need to check for success
 				}
 			}
 			
-			else if (typeid(board[row][column] == typeid(Doodlebug))) {
+			else if (typeid(board[row][column]) == typeid(Doodlebug)) {
 				//then check age
 				if(board[row][column]->getAge() % 8) {
 					//attempt to breed. need to check for success
@@ -415,7 +415,7 @@ void Simulation::starve() {
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			if (typeid(board[row][column] == typeid(Doodlebug))) {
+			if (typeid(board[row][column]) == typeid(Doodlebug)) {
 				//check for last meal and delete
 				if (board[row][column]->getLastMeal() == 3) {
 					//kill doodlebug
