@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 #include "simulation.hpp"
 #include "critter.hpp"
 #include "utility.hpp"
@@ -192,157 +193,91 @@ void Simulation::displayBoard()
 	//print line to delineate end of grid
 	cout << string (2*maxColumns, '-') << endl << endl;
 }
-/*
-void Simulation::moveDoodle() {
-	bool valid = false;
 
-    for (int row = 0; row < maxRows; i++) {
-        for (int column = 0; column < maxColumns; k++) {
+void Simulation::move() {
+    
+    for (int row = 0; row < maxRows; row++) {
+        for (int column = 0; column < maxColumns; column++) {
             if (typeid(board[row][column] == typeid(Doodlebug))) {
-                
+                bool food = true;
                 //increment age of doodlebug
                 board[row][column]->incrementAge();
 
                 if (typeid(board[row + 1][column] == typeid(Ant))) {
-                   //remove Ant in row and column
-                   removeCritter(row + 1, column)
-                   
-                   //feed Doodlebug use reset last meal
- //edit before     board[row][c)olumn]->resetMeal();
-                   
-                   //copy critter pointer to new position
-                   board[row + 1][column] = board[row][column];
-                   
-                   //remove criter from previous position
-                   removeCritter(row,column);
-                              
+                    makeMoveD(row, column, 1, 0, food);
                 }
                 else if (typeid(board[row - 1][column] == typeid(Ant))) {
-                   removeCritter(row - 1, column)
-      
- //edit before     board[row][column]->resetMeal();
-                   
-                   board[row - 1][column] = board[row][column];
-                   
-                   removeCritter(row,column);
+                    makeMoveD(row, column, -1, 0, food);
                 }
                 else if (typeid(board[row][column + 1] == typeid(Ant))) {
-                   removeCritter(row, column + 1)
-  
-  //edit before    board[row][column]->resetMeal();
-  
-                   board[row][column + 1] = board[row][column];
-                    
-                   removeCritter(row,column);
+                    makeMoveD(row, column, 0, 1, food);
                 }
                 else if (typeid(board[row][column - 1] == typeid(Ant))) {
-                   removeCritter(row, column - 1) 
-   
-   //edit before   board[row][column]->resetMeal();
-   
-                   board[row][column - 1] = board[row][column];
-                   
-                   removeCritter(row,column);
+                    makeMoveD(row, column, 0, -1, food);
                 }
                 else {
-                    int randNumb = rand(time(NULL) % 4) + 1;
-
-                    if (randNumb == 1 && typeid(board[row + 1][column] == NULL) {
-                        //checks if next move is valid
-						if (validMove(row + 1, column) {
-							//copy critter pointer to new position
-                    	    board[row + 1][column] = board[row][column];
-                   
-                        	//remove criter from previous position
-                        	removeCritter(row,column);
-
-                        	//increment last meal
-                        	board[row + 1][column]->incrementMeal();
-                        
-                        	if (board[row + 1][column]->incrementMeal() >= 3) {
-                            	removeCritter(row + 1, column);
-                        	}
-						}
+                    food = false;
+                    int randNumb = (rand() % 4) + 1;
+                    
+                    if (randNumb == 1 && board[row + 1][column] == NULL) {
+                        makeMoveD(row, column, 1, 0, food);
                     }
-                    else if (randNumb == 2 &&
-                    typeid(board[row - 1][column] == NULL) {
-                        
-						if (validMove(row - 1, column) {
-                        	//copy critter pointer to new position
-                        	board[row - 1][column] = board[row][column];
-                   
-                        	//remove criter from previous position
-                        	removeCritter(row,column);
-                        
-                        	board[row - 1][column]->incrementMeal();
-                        
-                        	if (board[row - 1][column]->
-							incrementLastMeal() >= 3) {
-								removeCritter(row - 1, column);
-                        	}
-                    	}
-				 	}
-                    else if (randNumb == 3 &&
-                    typeid(board[row][column + 1] == NULL) {
-                        
-						if (validMove(row, column + 1) {
-							//copy critter pointer to new position
-                        	board[row][column + 1] = board[row][column];
-                   
-                 	       	//remove criter from previous position
-                   		   	removeCritter(row,column);
-                        
-                        	board[row][column + 1]->incrementLastMeal();
-                        
-                        	if (board[row][column + 1]->
-							incrementLastMeal() >= 3) {
-                            	removeCritter(row, column + 1);
-                        	}
-						}
+                    else if (randNumb == 2 && board[row - 1][column] == NULL) {
+                        makeMoveD(row, column, -1, 0, food);
                     }
-                    else if (randNumb == 4 &&
-                    typeid(board[row][column - 1] == NULL) {
-                        
-						if (validMove(row, column - 1) {
-   		                    
-							//copy critter pointer to new position
-        	                board[row][column - 1] = board[row][column];
-                   
-            	            //remove criter from previous position
-                	        removeCritter(row,column);
-	
-    	                    if (board[row][column - 1]->
-							incrementLastMeal() >= 3) {
-        	                    removeCritter(row, column - 1);
-                        	}
-						}
+                    else if (randNumb == 3 && board[row][column + 1] == NULL) {
+                        makeMoveD(row, column, 0, 1, food);
                     }
-                }
+                   else if (randNumb == 4 && board[row][column - 1] == NULL) {
+                        makeMoveD(row, column, 0, -1, food);
+                    }
+                } 
             }
+        }
+    }
+
+    for (int row = 0; row < maxRows; row++) {
+        for (int column = 0; column < maxColumns; column++) {
+            if (typeid(*board[row][column] == typeid(Ant))) {
+                int randNumb = (rand() % 4) + 1;
+                board[row][column]->incrementAge();
+                    
+                if (randNumb == 1 && board[row + 1][column] == NULL) {
+                   makeMoveA(row, column, 1, 0);
+                }
+                else if (randNumb == 2 && board[row - 1][column] == NULL) {
+                   makeMoveA(row, column, -1, 0);
+                }
+                else if (randNumb == 3 && board[row][column + 1] == NULL) {
+                   makeMoveA(row, column, 0, 1);
+                }
+                else if (randNumb == 4 && board[row][column - 1] == NULL) {
+                   makeMoveA(row, column, 0, -1);
+                }
+            } 
         }
     }
 }
 
-void Simulation::moveAnt() {
-
-    for (int row = 0; row < maxRows; i++) {
-        for (int column = 0; column < maxColumns; k++) {
-            if (typeid(board[row][column] == typeid(Ant))) {
+void Simulation::makeMoveA(int row, int column, int i, int j) {
     
-            }
-        
-        }
-
+    //checks if next move is valid
+   	if (validMove(row + i, column + j )) {
+        //copy critter pointer to new position
+        board[row + i][column + j] = board[row][column];
+                 
+   	    //remove criter from previous position
+   	    removeCritter(row + i,column + j);
+            
     }
-
 }
 
 bool Simulation::validMove(int row, int col) {
-    
+
    if(row < 0) {  
     	return false;
 	}
-    else if(row = maxRows) {
+    else if(row == maxRows) {
         return false;
     }     
 
@@ -350,13 +285,45 @@ bool Simulation::validMove(int row, int col) {
         return false;
     }
     
-    else if(col = maxColmns) {
+    else if(col == maxColumns) {
         return false;
     }
 	else {
 		return true;
 	}
 } 
+
+
+void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
+    if (eat) {
+             //remove Ant in row and column
+             removeCritter(row + i, column + j);
+                   
+             //feed Doodlebug use reset last meal
+             board[row][column]->resetLastMeal();
+                   
+             //copy critter pointer to new position
+             board[row + i][column + j] = board[row][column];
+                   
+             //remove criter from previous position
+             removeCritter(row,column);
+    }
+    else {
+    	if (validMove(row + i, column + j)) {
+    		//copy critter pointer to new position
+       	    board[row + i][column + j] = board[row][column];
+                  
+          	//remove criter from previous position
+           	removeCritter(row,column);
+
+           	//increment last meal
+           	board[row + i][column + j]->incrementLastMeal();
+                        
+           	if (board[row + i][column + j]->getLastMeal() >= 3) {
+                removeCritter(row + i, column + j);
+            }
+	    }
+    }
 */
 
 void Simulation::addCritter(int row, int col)
@@ -423,5 +390,4 @@ void Simulation::starve() {
 			//}
 		}
 	}
-		
 }
