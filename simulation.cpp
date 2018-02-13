@@ -408,9 +408,13 @@ void Simulation::starve() {
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			/*if location == doodle and doodle last food == 3 {
-				removeCritter(row, column);
-			}*/
+			if (typeid(board[row][column] == typeid(Doodlebug))) {
+				//check for last meal and delete
+				if (board[row][column]->getLastMeal() == 3) {
+					//kill doodlebug
+					removeCritter(row, column);
+				}
+			}
 		}
 		
 	}
