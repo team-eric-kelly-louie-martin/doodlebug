@@ -11,7 +11,7 @@ class Critter
 		//constructors & destructors
 		Critter();
 		virtual ~Critter();
-	
+		
 		//getters
 		int getAge();
 
