@@ -386,12 +386,19 @@ void Simulation::breedEveryone()
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			//if location == ant and ant age % 3
-			//attempt to add ant with addCritter()
-					//NEED to update add critter to bool to check for success?
-			//if location == doodle and doodle age % 8
-			//attempt to add doodle
-					//again, need bool response for success		
+			if (typeid(board[row][column] == typeid(Ant))) {
+				//then check age
+				if(board[row][column]->getAge() % 3) {
+					//attempt to breed. need to check for success
+				}
+			}
+			
+			else if (typeid(board[row][column] == typeid(Doodlebug))) {
+				//then check age
+				if(board[row][column]->getAge() % 8) {
+					//attempt to breed. need to check for success
+				}
+			}
 		}
 	}
 	
