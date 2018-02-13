@@ -159,7 +159,6 @@ void Simulation::initialize()
 */
 }
 
-		
 void Simulation::displayBoard()
 {
 	//print line to delineate start of grid
@@ -360,3 +359,15 @@ bool Simulation::validMove(int row, int col) {
 	}
 } 
 */
+
+void Simulation::addCritter(int row, int col)
+{
+    board[row][col] = new Critter;
+    cout << board[row][col] << endl;
+}
+
+void Simulation::removeCritter(int row, int col)
+{
+    delete board[row][col];
+    board[row][col] = NULL;
+}
