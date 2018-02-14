@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <typeinfo>
 #include "simulation.hpp"
 #include "critter.hpp"
 #include "utility.hpp"
@@ -121,7 +122,6 @@ void Simulation::initialize()
 		}
 	}
 
-/*
 	//randomly add all desired doodlebugs
 	int crittersAdded = 0;
 	while(crittersAdded != numDoodle) 
@@ -157,7 +157,6 @@ void Simulation::initialize()
 			crittersAdded++;	
 		}
 	}
-*/
 }
 
 void Simulation::displayBoard()
@@ -249,6 +248,7 @@ void Simulation::move() {
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
             if (static_cast <Ant*> (board[row][column])->symbol() == 'O') {
+
                 int randNumb = (rand() % 4) + 1;
                 //increment the age of the ant
                 static_cast <Ant*> (board[row][column])->incrementAge();
@@ -359,9 +359,100 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
 	    }
     }
 }
-void Simulation::addCritter(int row, int col)
+
+void Simulation::addCritter(int row, int col, string critterType)
 {
-    board[row][col] = new Critter;
+    //board[row][col] = new Critter;
+    //get a random number to pick direction
+    int moveRand = getRandNum(1,4);
+    bool successfulBreed = false;
+    int attemptsLeft = 4;
+    
+    //loop until 
+    while(attemptsLeft > 0 && !successfulBreed) {
+    	if(moveRand == 1) {
+    		//check is west is within board
+    		if (col - 1 >= 0) {
+    			//check if west is null
+    			if (board[row][col - 1] != NULL) {
+    				//BREED depending on type
+    				if (critterType == "ANT") {
+    					board[row][col - 1] = new Ant;
+    				}
+    				else {
+    					board[row][col - 1] = new Doodlebug;
+    				}
+    				successfulBreed = true;
+    			}
+    			else{
+    				//otherwise, update attempt 
+    				moveRand++;
+    			}
+    		}
+    	}
+    	else if (moveRand == 2) {
+    		//check is North is within board
+    		if (row - 1 >= 0) {
+    			//check if north is null
+    			if (board[row - 1][col] != NULL) {
+    				//BREED depending on type
+    				if (critterType == "ANT") {
+    					board[row - 1][col] = new Ant;
+    				}
+    				else {
+    					board[row - 1][col] = new Doodlebug;
+    				}
+    				successfulBreed = true;
+    			}
+    			else{
+    				//otherwise, update attempt 
+    				moveRand++;
+    			}
+    		}	
+    	}
+    	else if (moveRand == 3) {
+    		//check is east is within board
+    		if (col + 1 <= maxColumns) {
+    			//check if east is null
+    			if (board[row][col + 1] != NULL) {
+    				//BREED depending on type
+    				if (critterType == "ANT") {
+    					board[row][col + 1] = new Ant;
+    				}
+    				else {
+    					board[row][col + 1]= new Doodlebug;
+    				}
+    				successfulBreed = true;
+    			}
+    			else{
+    				//otherwise, update attempt 
+    				moveRand++;
+    			}
+    		}	
+    	}
+    	else {
+    		//check is south is within board
+    		if (row + 1 <= maxRows) {
+    			//check if south is null
+    			if (board[row + 1][col] != NULL) {
+    				//BREED depending on type
+    				if (critterType == "ANT") {
+    					board[row + 1][col] = new Ant;
+    				}
+    				else {
+    					board[row + 1][col]= new Doodlebug;
+    				}
+    				successfulBreed = true;
+    			}
+    			else{
+    				//otherwise, update attempt 
+    				moveRand = 1;
+    			}
+    		}	
+    	}
+    	//decrement attempts Left
+    	attemptsLeft--;
+    }
 }
 
 void Simulation::removeCritter(int row, int col)
@@ -385,19 +476,25 @@ void Simulation::breedEveryone()
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			//ERRORS       if (typeid(board[row][column]) == typeid(Ant)) {
-				//then check age
-				if(board[row][column]->getAge() % 3) {
-					//attempt to breed. need to check for success
+			//check for NULL first
+			if (board[row][column] != NULL) {
+				if (typeid(board[row][column]) == typeid(Ant)) {
+					//then check age
+					if(board[row][column]->getAge() % 3) {
+						//attempt to breed. 
+						addCritter(row, column, "ANT");      
+					}
 				}
-			//}
-			
-			//ERRORS   else if (typeid(board[row][column]) == typeid(Doodlebug)) {
-				//then check age
-				if(board[row][column]->getAge() % 8) {
-					//attempt to breed. need to check for success
+				
+				else if (typeid(board[row][column]) == typeid(Doodlebug)) {
+					//then check age
+					if(board[row][column]->getAge() % 8) {
+						//attempt to breed. 
+						addCritter(row, column, "DOODLEBUG");   
+					}
 				}
-			//}
+			}
+				
 		}
 	}
 }
@@ -408,18 +505,26 @@ void Simulation::breedEveryone()
 * board. If == 3, doodlebug killed and removed from board
 ** parameters: none
 ** return: none
+* 
+* 
+* 
+* I think we delete this whole thing after Eric's implementation within Move?!?!?!?!?
+* 
+* 
 *****************************************************************************/
-void Simulation::starve() {
+void Simulation::starve() {/*
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
 			//ERRORS  if (typeid(board[row][column]) == typeid(Doodlebug)) {
 				//check for last meal and delete
-				//if ((board[row][column]::Doodlebug)->getLastMeal() == 3) {
+				//if (static_cast<*Doodlebug>(board[row][col])->getLastMeal() == 3) {
 					//kill doodlebug
 					//removeCritter(row, column);
 				//}
 			//}
 		}
 	}
+
+*/
 }

@@ -3,6 +3,8 @@
 #define SIMULATION_HPP	
 
 #include <vector>
+#include <string>
+using std::string;
 #include "critter.hpp"
 using std::vector;
 
@@ -24,13 +26,13 @@ class Simulation
 		void initialize();
 		void breedEveryone();
 		void starve();
-		void addCritter(int row, int col);
+		void addCritter(int row, int col, string critterType);
 		void removeCritter(int row, int col);
 		void displayBoard();
-        void move();
-        bool validMove(int row, int col);
-        void makeMoveD(int row, int column, int i, int j, bool eat);
-        void makeMoveA(int row, int column, int i, int j);
+		void move();
+		bool validMove(int row, int col);
+		void makeMoveD(int row, int column, int i, int j, bool eat);
+		void makeMoveA(int row, int column, int i, int j);
 };
 
 #endif

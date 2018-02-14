@@ -32,9 +32,10 @@ class Doodlebug : public Critter
 		int getLastMeal();
 
 		//misc.
-        void incrementLastMeal();
-        void resetLastMeal();
-        char symbol();
+    void incrementLastMeal();
+    void resetLastMeal();
+    char symbol();
+
 };
 
 class Ant : public Critter
