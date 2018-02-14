@@ -14,11 +14,8 @@ class Critter
 		
 		//getters
 		int getAge();
-		virtual int getLastMeal() = 0;
 
 		//misc.	
-        	virtual void incrementLastMeal() = 0;
-		virtual void resetLastMeal() = 0;
 		void incrementAge();
 };
 

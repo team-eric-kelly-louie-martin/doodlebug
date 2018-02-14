@@ -299,7 +299,7 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
              removeCritter(row + i, column + j);
                    
              //feed Doodlebug use reset last meal
-             board[row][column]->resetLastMeal();
+             (static_cast<Doodlebug*>(board[row][column]))->resetLastMeal();
                    
              //copy critter pointer to new position
              board[row + i][column + j] = board[row][column];
@@ -316,9 +316,11 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
            	removeCritter(row,column);
 
            	//increment last meal
-           	board[row + i][column + j]->incrementLastMeal();
+           	(static_cast<Doodlebug*>(board[row + i][column + j]))->
+			incrementLastMeal();
                         
-           	if (board[row + i][column + j]->getLastMeal() >= 3) {
+           	if ((static_cast<Doodlebug*>(board[row + i][column + j]))->
+				getLastMeal() >= 3) {
                 removeCritter(row + i, column + j);
             }
 	    }
