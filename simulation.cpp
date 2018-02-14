@@ -382,7 +382,7 @@ void Simulation::addCritter(int row, int col, string critterType)
     			if (board[row][col + 1] != NULL) {
     				//BREED depending on type
     				if (critterType == "ANT") {
-    					board[row][colcolumn + 1] = new Ant;
+    					board[row][col + 1] = new Ant;
     				}
     				else {
     					board[row][col + 1]= new Doodlebug;
