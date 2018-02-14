@@ -27,10 +27,10 @@ class Simulation
 		void addCritter(int row, int col);
 		void removeCritter(int row, int col);
 		void displayBoard();
-        void move();
-        bool validMove(int row, int col);
-        void makeMoveD(int row, int column, int i, int j, bool eat);
-        void makeMoveA(int row, int column, int i, int j);
+		void move();
+		bool validMove(int row, int col);
+		void makeMoveD(int row, int column, int i, int j, bool eat);
+		void makeMoveA(int row, int column, int i, int j);
 };
 
 #endif

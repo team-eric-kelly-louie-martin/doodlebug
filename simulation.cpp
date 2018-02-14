@@ -122,7 +122,6 @@ void Simulation::initialize()
 		}
 	}
 
-/*
 	//randomly add all desired doodlebugs
 	int crittersAdded = 0;
 	while(crittersAdded != numDoodle) 
@@ -158,7 +157,6 @@ void Simulation::initialize()
 			crittersAdded++;	
 		}
 	}
-*/
 }
 
 void Simulation::displayBoard()
