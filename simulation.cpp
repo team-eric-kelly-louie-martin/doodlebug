@@ -339,13 +339,13 @@ void Simulation::addCritter(int row, int col, string critterType)
     		//check is west is within board
     		if (col - 1 >= 0) {
     			//check if west is null
-    			if (board[row][column - 1] != NULL) {
+    			if (board[row][col - 1] != NULL) {
     				//BREED depending on type
     				if (critterType == "ANT") {
-    					board[row][column - 1] = new Ant;
+    					board[row][col - 1] = new Ant;
     				}
     				else {
-    					board[row][column - 1] = new Doodlebug;
+    					board[row][col - 1] = new Doodlebug;
     				}
     				successfulBreed = true;
     			}
@@ -359,13 +359,13 @@ void Simulation::addCritter(int row, int col, string critterType)
     		//check is North is within board
     		if (row - 1 >= 0) {
     			//check if north is null
-    			if (board[row - 1][column] != NULL) {
+    			if (board[row - 1][col] != NULL) {
     				//BREED depending on type
     				if (critterType == "ANT") {
-    					board[row - 1][column] = new Ant;
+    					board[row - 1][col] = new Ant;
     				}
     				else {
-    					board[row - 1][column] = new Doodlebug;
+    					board[row - 1][col] = new Doodlebug;
     				}
     				successfulBreed = true;
     			}
@@ -379,13 +379,13 @@ void Simulation::addCritter(int row, int col, string critterType)
     		//check is east is within board
     		if (col + 1 <= maxColumns) {
     			//check if east is null
-    			if (board[row][column + 1] != NULL) {
+    			if (board[row][col + 1] != NULL) {
     				//BREED depending on type
     				if (critterType == "ANT") {
-    					board[row][column + 1] = new Ant;
+    					board[row][colcolumn + 1] = new Ant;
     				}
     				else {
-    					board[row][column + 1]= new Doodlebug;
+    					board[row][col + 1]= new Doodlebug;
     				}
     				successfulBreed = true;
     			}
@@ -399,13 +399,13 @@ void Simulation::addCritter(int row, int col, string critterType)
     		//check is south is within board
     		if (row + 1 <= maxRows) {
     			//check if south is null
-    			if (board[row + 1][column] != NULL) {
+    			if (board[row + 1][col] != NULL) {
     				//BREED depending on type
     				if (critterType == "ANT") {
-    					board[row + 1][column] = new Ant;
+    					board[row + 1][col] = new Ant;
     				}
     				else {
-    					board[row + 1][column]= new Doodlebug;
+    					board[row + 1][col]= new Doodlebug;
     				}
     				successfulBreed = true;
     			}
