@@ -11,7 +11,6 @@ class Critter
 		//constructors & destructors
 		Critter();
 		virtual ~Critter();
-		
 		//getters
 		int getAge();
 
@@ -33,8 +32,10 @@ class Doodlebug : public Critter
 		int getLastMeal();
 
 		//misc.
-		void incrementLastMeal();
-		void resetLastMeal();
+    void incrementLastMeal();
+    void resetLastMeal();
+    char symbol();
+
 };
 
 class Ant : public Critter
@@ -43,6 +44,7 @@ class Ant : public Critter
 		//constructors & destructors
 		Ant();
 		virtual ~Ant();
+        char symbol();
 };
 
 #endif
