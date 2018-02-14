@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <typeinfo>
 #include "simulation.hpp"
 #include "critter.hpp"
 #include "utility.hpp"
@@ -198,21 +199,21 @@ void Simulation::move() {
     
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
-            if (typeid(board[row][column] == typeid(Doodlebug))) {
+            if (typeid(board[row][column]) == typeid(Doodlebug)) {
                 bool food = true;
                 //increment age of doodlebug
                 board[row][column]->incrementAge();
 
-                if (typeid(board[row + 1][column] == typeid(Ant))) {
+                if (typeid(board[row + 1][column]) == typeid(Ant)) {
                     makeMoveD(row, column, 1, 0, food);
                 }
-                else if (typeid(board[row - 1][column] == typeid(Ant))) {
+                else if (typeid(board[row - 1][column]) == typeid(Ant)) {
                     makeMoveD(row, column, -1, 0, food);
                 }
-                else if (typeid(board[row][column + 1] == typeid(Ant))) {
+                else if (typeid(board[row][column + 1]) == typeid(Ant)) {
                     makeMoveD(row, column, 0, 1, food);
                 }
-                else if (typeid(board[row][column - 1] == typeid(Ant))) {
+                else if (typeid(board[row][column - 1]) == typeid(Ant)) {
                     makeMoveD(row, column, 0, -1, food);
                 }
                 else {
@@ -238,7 +239,7 @@ void Simulation::move() {
 
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
-            if (typeid(*board[row][column] == typeid(Ant))) {
+            if (typeid(board[row][column]) == typeid(Ant)) {
                 int randNumb = (rand() % 4) + 1;
                 board[row][column]->incrementAge();
                     
@@ -324,11 +325,11 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
             }
 	    }
     }
-*/
+}
 
 void Simulation::addCritter(int row, int col)
 {
-    board[row][col] = new Critter;
+    //board[row][col] = new Critter;
 }
 
 void Simulation::removeCritter(int row, int col)
