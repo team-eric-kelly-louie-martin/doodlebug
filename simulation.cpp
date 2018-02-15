@@ -46,28 +46,27 @@ void Simulation::run()
 	for (int i = 0; i < maxSteps; i++)
 	{
 		//age animals
-	/*
 		for (int i = 0; i < maxRows; i++)
 		{
 			for (int n = 0; n < maxColumns; n++)
 			{
 				if (board[i][n] != NULL)
 				{
-					board[i][n]->ageUp();
+					board[i][n]->incrementAge();
 				}
 			}
 		}
-	*/
 
 		//move doodlebugs
-	
+		move();
+
 		//check doodlebugs for starvation, kill if necessary	
-	//starve();
+		starve();
 	
 		//move ants
 
 		//breed criters
-	//breedEveryone();
+		breedEveryone();
 		
 		//display results of the turn
 		cout << "Step: " << i << endl;
