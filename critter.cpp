@@ -60,6 +60,10 @@ void Doodlebug::resetLastMeal()
     lastMeal = 0;
 }
 
+char Doodlebug::symbol()
+{
+    return 'X';
+}
 
 /*****************************************************************************
 ** Description:	Ant...
@@ -72,4 +76,9 @@ Ant::Ant()
 
 Ant::~Ant()
 {
+}
+
+char Ant::symbol()
+{
+    return 'O';
 }
