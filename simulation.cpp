@@ -203,27 +203,35 @@ void Simulation::move() {
                 else if (column > 0 && dynamic_cast <Ant*> (board[row][column - 1])) {
                     makeMoveD(row, column, 0, -1, food);
                 }
-
-		cout << "Random move" << endl;
-                
 		else {
                 //if an ant does not exist in an adjacent square the doodle bug
+               	cout << "Start random move" << endl; 
                 // will make  random move
                     food = false;
-                    int randNumb = (rand() % 4) + 1;
+		    bool status = false;
+		    int n = 0;
                     //if the square is open available the doodle bug will 
                     // make a move into that square
-                    if (randNumb == 1 && row < maxRows-1 && board[row + 1][column] == NULL) {
-                        makeMoveD(row, column, 1, 0, food);
-                    }
-                    else if (randNumb == 2 && row > 0 && board[row - 1][column] == NULL) {
-                        makeMoveD(row, column, -1, 0, food);
-                    }
-                    else if (randNumb == 3 && column < maxColumns-1 && board[row][column + 1] == NULL) {
-                        makeMoveD(row, column, 0, 1, food);
-                    }
-                   else if (randNumb == 4 && column > 0 && board[row][column - 1] == NULL) {
-                        makeMoveD(row, column, 0, -1, food);
+		    while (status == false && n < 10)
+		    {
+                    	    int randNumb = (rand() % 4) + 1;
+			    if (randNumb == 1 && row < maxRows-2 && board[row + 1][column] == NULL) {
+				makeMoveD(row, column, 1, 0, food);
+				status = true;
+			    }
+			    else if (randNumb == 2 && row > 0 && board[row - 1][column] == NULL) {
+				makeMoveD(row, column, -1, 0, food);
+				status = true;
+			    }
+			    else if (randNumb == 3 && column < maxColumns-2 && board[row][column + 1] == NULL) {
+				makeMoveD(row, column, 0, 1, food);
+				status = true;
+			    }
+			   else if (randNumb == 4 && column > 0 && board[row][column - 1] == NULL) {
+				makeMoveD(row, column, 0, -1, food);
+				status = true;
+			   }
+			   n++;
                     }
                 } 
 		   cout << "End of Random move" << endl;
@@ -242,7 +250,7 @@ void Simulation::move() {
                 board[row][column]->incrementAge();
                 //makes a random move based on the randNumb generated
                 // square must be equal to null to make move.
-                    if (randNumb == 1 && row < maxRows - 1 &&
+                    if (randNumb == 1 && row < maxRows - 2 &&
                     board[row + 1][column] == NULL) {
                         makeMoveA(row, column, 1, 0);
                     }
@@ -250,7 +258,7 @@ void Simulation::move() {
                     board[row - 1][column] == NULL) {
                         makeMoveA(row, column, -1, 0);
                     }
-                    else if (randNumb == 3 && column < maxColumns-1 &&
+                    else if (randNumb == 3 && column < maxColumns-2 &&
                     board[row][column + 1] == NULL) {
                         makeMoveA(row, column, 0, 1);
                     }
@@ -467,7 +475,7 @@ void Simulation::removeCritter(int row, int col)
 }
 
 
-
+/*
 ** parameters: none
 ** return: none
 *****************************************************************************/
