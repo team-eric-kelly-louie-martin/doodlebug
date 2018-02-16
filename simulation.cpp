@@ -45,8 +45,12 @@ void Simulation::run()
 	//simulate for X turns
 	for (int i = 0; i < maxSteps; i++)
 	{
-		//move doodlebugs
+		//increment age
+
+		//move()
 		move();
+
+		//starve()
 
 		//breed criters
 		breedEveryone();
@@ -177,7 +181,7 @@ void Simulation::displayBoard()
 }
 
 void Simulation::move() {
-    
+   /* 
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
 		cout << board[row][column] << endl;
@@ -214,7 +218,9 @@ void Simulation::move() {
                     // make a move into that square
 		    while (status == false && n < 10)
 		    {
+			    cout << "while loop" << endl;
                     	    int randNumb = (rand() % 4) + 1;
+				cout << randNumb << endl; 
 			    if (randNumb == 1 && row < maxRows-2 && board[row + 1][column] == NULL) {
 				makeMoveD(row, column, 1, 0, food);
 				status = true;
@@ -234,7 +240,6 @@ void Simulation::move() {
 			   n++;
                     }
                 } 
-		   cout << "End of Random move" << endl;
             }
         }
     }
@@ -269,7 +274,9 @@ void Simulation::move() {
                 }
 	}
     }
+*/
 }
+
 
 /*****************************************************************************   
 ** Description: The makeMoveA function moves the ant in a random direction
