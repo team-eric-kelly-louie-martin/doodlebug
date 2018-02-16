@@ -180,12 +180,16 @@ void Simulation::move() {
     
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
+		cout << board[row][column] << endl;
+		cout << row << " " << column << endl;
             if (dynamic_cast <Doodlebug*> (board[row][column])) {
-                bool food = true;
+               	cout << "test1" << endl; 
+		bool food = true;
                 //increment age of doodlebug
                 board[row][column]->incrementAge();
                 //the following checks whether there is an ant in an adjacent 
                 //sqaure
+    		cout << "Increment Age" << endl; 
                 if (row < maxRows-1 && dynamic_cast <Ant*> (board[row + 1][column])) {
                 //if an ant exists the doodlebug moves
                     makeMoveD(row, column, 1, 0, food);
@@ -199,7 +203,10 @@ void Simulation::move() {
                 else if (column > 0 && dynamic_cast <Ant*> (board[row][column - 1])) {
                     makeMoveD(row, column, 0, -1, food);
                 }
-                else {
+
+		cout << "Random move" << endl;
+                
+		else {
                 //if an ant does not exist in an adjacent square the doodle bug
                 // will make  random move
                     food = false;
@@ -219,10 +226,13 @@ void Simulation::move() {
                         makeMoveD(row, column, 0, -1, food);
                     }
                 } 
+		   cout << "End of Random move" << endl;
             }
         }
     }
 
+    cout << "End of Doodble bug loop" << endl; 
+    
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
             if (dynamic_cast <Ant*> (board[row][column])) {
@@ -458,11 +468,6 @@ void Simulation::removeCritter(int row, int col)
 
 
 
-
-
-/*****************************************************************************
-** Description:	Breed function checks the age of existing objects on board.
-* If old enough to breed, breeding is attempted. 
 ** parameters: none
 ** return: none
 *****************************************************************************/
