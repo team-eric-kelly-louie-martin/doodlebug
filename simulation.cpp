@@ -234,23 +234,22 @@ void Simulation::move() {
                 // square must be equal to null to make move.
                     if (randNumb == 1 && row < maxRows - 1 &&
                     board[row + 1][column] == NULL) {
-                        makeMoveA(row, column, 1, 0, food);
+                        makeMoveA(row, column, 1, 0);
                     }
                     else if (randNumb == 2 && row > 0 &&
                     board[row - 1][column] == NULL) {
-                        makeMoveA(row, column, -1, 0, food);
+                        makeMoveA(row, column, -1, 0);
                     }
                     else if (randNumb == 3 && column < maxColumns-1 &&
                     board[row][column + 1] == NULL) {
-                        makeMoveA(row, column, 0, 1, food);
+                        makeMoveA(row, column, 0, 1);
                     }
                    else if (randNumb == 4 && column > 0 &&
                    board[row][column - 1] == NULL) {
-                        makeMoveA(row, column, 0, -1, food);
+                        makeMoveA(row, column, 0, -1);
                     }
                 }
-            } 
-        }
+	}
     }
 }
 
