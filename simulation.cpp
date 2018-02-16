@@ -45,25 +45,8 @@ void Simulation::run()
 	//simulate for X turns
 	for (int i = 0; i < maxSteps; i++)
 	{
-		//age animals
-		for (int i = 0; i < maxRows; i++)
-		{
-			for (int n = 0; n < maxColumns; n++)
-			{
-				if (board[i][n] != NULL)
-				{
-					board[i][n]->incrementAge();
-				}
-			}
-		}
-
 		//move doodlebugs
 		move();
-
-		//check doodlebugs for starvation, kill if necessary	
-		starve();
-	
-		//move ants
 
 		//breed criters
 		breedEveryone();
@@ -175,7 +158,8 @@ void Simulation::displayBoard()
 				cout << " ";
 			}
 			//print ant symbol for ants
-			else if(typeid(board[row][col]) == typeid(Ant))
+			//else if(typeid(board[row][col]) == typeid(Ant))
+			else if (dynamic_cast<Ant*>(board[row][col]))
 			{
 				cout << "O";
 			}
