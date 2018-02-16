@@ -50,7 +50,7 @@ void Simulation::run()
 		//move()
 		move();
 
-		//starve()
+		starve();
 
 		//breed criters
 		breedEveryone();
@@ -520,26 +520,20 @@ void Simulation::breedEveryone()
 * board. If == 3, doodlebug killed and removed from board
 ** parameters: none
 ** return: none
-* 
-* 
-* 
-* I think we delete this whole thing after Eric's implementation within Move?!?!?!?!?
-* 
-* 
 *****************************************************************************/
-void Simulation::starve() {/*
+void Simulation::starve() {
 	//iterate through board
 	for (int row = 0; row < maxRows; row++) {
 		for (int column = 0; column < maxColumns; column++) {
-			//ERRORS  if (typeid(board[row][column]) == typeid(Doodlebug)) {
+			if (dynamic_cast <Doodlebug*> (board[row][column]))  {
+
 				//check for last meal and delete
-				//if (static_cast<*Doodlebug>(board[row][col])->getLastMeal() == 3) {
+				if (dynamic_cast<Doodlebug*>(board[row][column])->getLastMeal() == 3) {
 					//kill doodlebug
-					//removeCritter(row, column);
-				//}
-			//}
+					removeCritter(row, column);
+				}
+			}
 		}
 	}
 
-*/
 }
