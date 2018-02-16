@@ -180,28 +180,23 @@ void Simulation::move() {
     
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
-            if (static_cast <Doodlebug*> (board[row][column])->
-            symbol() == 'X') {
+            if (dynamic_cast <Doodlebug*> (board[row][column])) {
                 bool food = true;
                 //increment age of doodlebug
-                static_cast <Doodlebug*> (board[row][column])->incrementAge();
+                board[row][column]->incrementAge();
                 //the following checks whether there is an ant in an adjacent 
                 //sqaure
-                if (static_cast <Doodlebug*> (board[row + 1][column])->
-                symbol() == 'X') {
+                if (dynamic_cast <Doodlebug*> (board[row + 1][column])) {
                 //if an ant exists the doodlebug moves
                     makeMoveD(row, column, 1, 0, food);
                 }
-                else if (static_cast <Doodlebug*> (board[row - 1][column])->
-                symbol() == 'X') {
+                else if (dynamic_cast <Doodlebug*> (board[row - 1][column])) {
                     makeMoveD(row, column, -1, 0, food);
                 }
-                else if (static_cast <Doodlebug*> (board[row][column + 1])->
-                symbol() == 'X') {
+                else if (dynamic_cast <Doodlebug*> (board[row][column + 1])) {
                     makeMoveD(row, column, 0, 1, food);
                 }
-                else if (static_cast <Doodlebug*> (board[row][column - 1])
-                ->symbol() == 'X') {
+                else if (dynamic_cast <Doodlebug*> (board[row][column - 1])) {
                     makeMoveD(row, column, 0, -1, food);
                 }
                 else {
@@ -230,11 +225,11 @@ void Simulation::move() {
 
     for (int row = 0; row < maxRows; row++) {
         for (int column = 0; column < maxColumns; column++) {
-            if (static_cast <Ant*> (board[row][column])->symbol() == 'O') {
+            if (dynamic_cast <Ant*> (board[row][column])) {
 
                 int randNumb = (rand() % 4) + 1;
                 //increment the age of the ant
-                static_cast <Ant*> (board[row][column])->incrementAge();
+                board[row][column]->incrementAge();
                 //makes a random move based on the randNumb generated
                 // square must be equal to null to make move.
                 if (randNumb == 1 && board[row + 1][column] == NULL) {
@@ -314,7 +309,7 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
              removeCritter(row + i, column + j);
                    
              //feed Doodlebug use reset last meal
-             static_cast <Doodlebug*> (board[row][column])->resetLastMeal();
+             dynamic_cast <Doodlebug*> (board[row][column])->resetLastMeal();
                    
              //copy critter pointer to new position
              board[row + i][column + j] = board[row][column];
@@ -331,11 +326,11 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
            	removeCritter(row,column);
 
            	//increment last meal
-           	static_cast <Doodlebug*> (board[row + i][column + j])->
+           	dynamic_cast <Doodlebug*> (board[row + i][column + j])->
             incrementLastMeal();
             // if the doodle bug has not eaten in 3 moves it dies 
             // and the removecritter function is called
-           	if (static_cast <Doodlebug*> (board[row + i][column + j])->
+           	if (dynamic_cast <Doodlebug*> (board[row + i][column + j])->
             getLastMeal() >= 3) {
                 removeCritter(row + i, column + j);
             }
