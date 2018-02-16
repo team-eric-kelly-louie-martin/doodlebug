@@ -186,17 +186,17 @@ void Simulation::move() {
                 board[row][column]->incrementAge();
                 //the following checks whether there is an ant in an adjacent 
                 //sqaure
-                if (dynamic_cast <Ant*> (board[row + 1][column])) {
+                if (row < maxRows-1 && dynamic_cast <Ant*> (board[row + 1][column])) {
                 //if an ant exists the doodlebug moves
                     makeMoveD(row, column, 1, 0, food);
                 }
-                else if (dynamic_cast <Ant*> (board[row - 1][column])) {
+                else if (row > 0 && dynamic_cast <Ant*> (board[row - 1][column])) {
                     makeMoveD(row, column, -1, 0, food);
                 }
-                else if (dynamic_cast <Ant*> (board[row][column + 1])) {
+                else if (column < maxColumns-1 && dynamic_cast <Ant*> (board[row][column + 1])) {
                     makeMoveD(row, column, 0, 1, food);
                 }
-                else if (dynamic_cast <Ant*> (board[row][column - 1])) {
+                else if (column > 0 && dynamic_cast <Ant*> (board[row][column - 1])) {
                     makeMoveD(row, column, 0, -1, food);
                 }
                 else {
@@ -206,16 +206,16 @@ void Simulation::move() {
                     int randNumb = (rand() % 4) + 1;
                     //if the square is open available the doodle bug will 
                     // make a move into that square
-                    if (randNumb == 1 && board[row + 1][column] == NULL) {
+                    if (randNumb == 1 && row < maxRows-1 && board[row + 1][column] == NULL) {
                         makeMoveD(row, column, 1, 0, food);
                     }
-                    else if (randNumb == 2 && board[row - 1][column] == NULL) {
+                    else if (randNumb == 2 && row > 0 && board[row - 1][column] == NULL) {
                         makeMoveD(row, column, -1, 0, food);
                     }
-                    else if (randNumb == 3 && board[row][column + 1] == NULL) {
+                    else if (randNumb == 3 && column < maxColumns-1 && board[row][column + 1] == NULL) {
                         makeMoveD(row, column, 0, 1, food);
                     }
-                   else if (randNumb == 4 && board[row][column - 1] == NULL) {
+                   else if (randNumb == 4 && column > 0 && board[row][column - 1] == NULL) {
                         makeMoveD(row, column, 0, -1, food);
                     }
                 } 
@@ -326,15 +326,16 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
            	removeCritter(row,column);
 
             }
+	    
+		//increment last meal
+		static_cast <Doodlebug*> (board[row + i][column + j])->
+	    incrementLastMeal();
+	    // if the doodle bug has not eaten in 3 moves it dies 
+	    // and the removecritter function is called
+		if (static_cast <Doodlebug*> (board[row + i][column + j])->
+	    getLastMeal() >= 3) {
+		removeCritter(row + i, column + j);
 	    }
-	//increment last meal
-	dynamic_cast <Doodlebug*> (board[row + i][column + j])->
-    incrementLastMeal();
-    // if the doodle bug has not eaten in 3 moves it dies 
-    // and the removecritter function is called
-	if (dynamic_cast <Doodlebug*> (board[row + i][column + j])->
-    getLastMeal() >= 3) {
-	removeCritter(row + i, column + j);
     }
 }
 
