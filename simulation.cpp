@@ -461,7 +461,7 @@ void Simulation::breedEveryone()
 		for (int column = 0; column < maxColumns; column++) {
 			//check for NULL first
 			if (board[row][column] != NULL) {
-				if (typeid(board[row][column]) == typeid(Ant)) {
+				if (dynamic_cast<Ant*>(board[row][column])) {
 					//then check age
 					if(board[row][column]->getAge() % 3) {
 						//attempt to breed. 
@@ -469,7 +469,7 @@ void Simulation::breedEveryone()
 					}
 				}
 				
-				else if (typeid(board[row][column]) == typeid(Doodlebug)) {
+				else if (dynamic_cast<Doodlebug*>(board[row][column])) {
 					//then check age
 					if(board[row][column]->getAge() % 8) {
 						//attempt to breed. 
