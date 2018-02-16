@@ -232,17 +232,22 @@ void Simulation::move() {
                 board[row][column]->incrementAge();
                 //makes a random move based on the randNumb generated
                 // square must be equal to null to make move.
-                if (randNumb == 1 && board[row + 1][column] == NULL) {
-                   makeMoveA(row, column, 1, 0);
-                }
-                else if (randNumb == 2 && board[row - 1][column] == NULL) {
-                   makeMoveA(row, column, -1, 0);
-                }
-                else if (randNumb == 3 && board[row][column + 1] == NULL) {
-                   makeMoveA(row, column, 0, 1);
-                }
-                else if (randNumb == 4 && board[row][column - 1] == NULL) {
-                   makeMoveA(row, column, 0, -1);
+                    if (randNumb == 1 && row < maxRows - 1 &&
+                    board[row + 1][column] == NULL) {
+                        makeMoveA(row, column, 1, 0, food);
+                    }
+                    else if (randNumb == 2 && row > 0 &&
+                    board[row - 1][column] == NULL) {
+                        makeMoveA(row, column, -1, 0, food);
+                    }
+                    else if (randNumb == 3 && column < maxColumns-1 &&
+                    board[row][column + 1] == NULL) {
+                        makeMoveA(row, column, 0, 1, food);
+                    }
+                   else if (randNumb == 4 && column > 0 &&
+                   board[row][column - 1] == NULL) {
+                        makeMoveA(row, column, 0, -1, food);
+                    }
                 }
             } 
         }
