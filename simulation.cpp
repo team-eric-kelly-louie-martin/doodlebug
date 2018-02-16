@@ -326,11 +326,6 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
     		//copy critter pointer to new position
        	    board[row + i][column + j] = board[row][column];
                   
-          	//remove criter from previous position
-           	removeCritter(row,column);
-
-            }
-	    
 		//increment last meal
 		static_cast <Doodlebug*> (board[row + i][column + j])->
 	    incrementLastMeal();
@@ -339,7 +334,23 @@ void Simulation::makeMoveD(int row, int column, int i, int j, bool eat) {
 		if (static_cast <Doodlebug*> (board[row + i][column + j])->
 	    getLastMeal() >= 3) {
 		removeCritter(row + i, column + j);
+          	
+		//remove criter from previous position
+           	removeCritter(row,column);
+
+            }
+	else{ 
+		//increment last meal
+		static_cast <Doodlebug*> (board[row][column])->
+	    incrementLastMeal();
+	    // if the doodle bug has not eaten in 3 moves it dies 
+	    // and the removecritter function is called
+		if (static_cast <Doodlebug*> (board[row][column])->
+	    getLastMeal() >= 3) {
+		removeCritter(row, column);
+		}
 	    }
+	}
     }
 }
 
@@ -395,7 +406,7 @@ void Simulation::addCritter(int row, int col, string critterType)
     	}
     	else if (moveRand == 3) {
     		//check is east is within board
-    		if (col + 1 <= maxColumns) {
+    		if (col + 1 <= maxColumns-1) {
     			//check if east is null
     			if (board[row][col + 1] != NULL) {
     				//BREED depending on type
@@ -415,7 +426,7 @@ void Simulation::addCritter(int row, int col, string critterType)
     	}
     	else {
     		//check is south is within board
-    		if (row + 1 <= maxRows) {
+    		if (row + 1 <= maxRows-1) {
     			//check if south is null
     			if (board[row + 1][col] != NULL) {
     				//BREED depending on type
@@ -437,6 +448,7 @@ void Simulation::addCritter(int row, int col, string critterType)
     	attemptsLeft--;
     }
 }
+
 
 void Simulation::removeCritter(int row, int col)
 {
